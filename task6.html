@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Склад товарів</title>
+<script>
+// Масиви з товарами
+let product = ["Дискета", "Дріт", "Дошка"];
+let quantity = ["10", "25", "5"];
+let cost = ["15.5", "7.2", "120"];
+
+// Змінна для збереження поточного індексу товару
+let currentIndex = -1;
+
+function fun1() {
+    let name = document.form1.name_cont.value.trim();
+    currentIndex = product.indexOf(name);
+    
+    if (currentIndex !== -1) {
+        document.form1.output_density.value = quantity[currentIndex];
+        document.form1.output_area.value = cost[currentIndex];
+        document.getElementById("totalSum").innerText = "";
+    } else {
+        alert("Товар не знайдено!");
+        document.form1.output_density.value = "";
+        document.form1.output_area.value = "";
+        document.getElementById("totalSum").innerText = "";
+    }
+}
+
+function fun2() {
+    if (currentIndex !== -1) {
+        let total = parseFloat(quantity[currentIndex]) * parseFloat(cost[currentIndex]);
+        document.getElementById("totalSum").innerText = 
+            `Загальна сума для товару "${product[currentIndex]}" становить: ${total.toFixed(2)} грн.`;
+    } else {
+        alert("Спочатку оберіть товар!");
+    }
+}
+</script>
+
+<style>
+body {
+    font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+    background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+h3 {
+    font-size: 40px;
+    color: #006669;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333333;
+    font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+}
+
+p {
+    font-size: 22px; 
+    color: #333333;
+    margin-bottom: 20px;
+}
+input[type="button"] {
+    font-size: 20px; 
+    padding: 12px 24px;
+    color: white;
+    background-color: #006669;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+input[type="button"]:hover {
+    background-color: #49c3c7;
+}
+input[type="text"] {
+    font-size: 18px;
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#totalSum {
+    font-size: 20px;
+    color: #006669;
+    font-weight: bold;
+}
+    a {
+            font-size: 20px; 
+            color: #006669;
+            text-decoration: none;
+            border: 2px solid #49c3c7;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background-color: #49c3c7;
+            color: white;
+        }
+
+</style>
+
+</head>
+<body>
+<h3>Перевірка товарів на складі</h3>
+
+<form name="form1">
+    <h2>Введіть назву товару:</h2>
+    <input type="text" name="name_cont" placeholder="Наприклад: Дискета">
+    <input type="button" value="Наявна кількість і вартість" onclick="fun1()">
+    <br>
+    <input type="text" size="70" name="output_density" placeholder="Кількість на складі" readonly>
+    <input type="text" size="70" name="output_area" placeholder="Вартість за одиницю" readonly>
+</form>
+
+<br>
+<input type="button" value="Загальна сума" onclick="fun2()">
+<p id="totalSum"></p>
+<a href="lab1_Kyshenia.html" target="_blank">Назад</a>
+
+</body>
+</html>

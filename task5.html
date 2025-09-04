@@ -1,0 +1,103 @@
+<html>
+<head>
+
+<style>
+     body {
+            font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+            background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+   
+        input[type="text"] {
+            font-size: 20px; 
+            padding: 12px 24px;
+            color: white;
+            background-color: #006669;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        input[type="text"]:hover {
+            background-color: #49c3c7;
+        }
+
+          input[type="button"] {
+            font-size: 20px; 
+            padding: 12px 24px;
+            color: white;
+            background-color: #006669;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        input[type="button"]:hover {
+            background-color: #49c3c7;
+        }
+
+        a {
+            font-size: 20px; 
+            color: #006669;
+            text-decoration: none;
+            border: 2px solid #49c3c7;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background-color: #49c3c7;
+            color: white;
+        }
+        
+          p {
+            font-size: 30px; 
+            color: #333333;
+            margin-bottom: 20px;
+        }
+          
+     </style> 
+
+<script>
+function fun()
+{
+let x, y, sum=0.0, i=0.0, cur=0.0;
+x = parseInt(main_form.t_x.value);
+y = parseInt(main_form.t_y.value);
+let to4nost = 0.001;
+do
+{
+i++;
+let factorial = 1;
+sum = 0;
+for (let i = 3; i <= 5; i++) {
+    let factorial = 1;
+    for (let j = 1; j <= i; j++) factorial *= j;
+    let cur = Math.pow(-1, i+1) * (2*x*y - y*y + x) / (3*x*factorial);
+    sum += cur;
+}
+
+}while(cur>to4nost)
+main_form.t_c.value = "" + sum;
+}
+</script>
+</head>
+<body>
+<form id = "main_form">
+<p>x=<input type="text" id = "t_x" value="22"><br></p>
+<p>y=<input type="text" id = "t_y" value="-98"><br></p>
+<p>Результат:<input type="text" id = "t_c" value=""><br></p>
+<p><input type = "button" onClick = "fun();" value = "Розрахувати"></p>
+</form>
+<a href="lab1_Kyshenia.html" target="_blank">Назад</a>
+
+</body>
+</html>
