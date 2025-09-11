@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<style>
+    body {
+        font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+        background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+    h3 {
+        font-size: 40px;
+        color: #006669;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 22px; 
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    input[type="text"] {
+        font-size: 18px; 
+        padding: 6px 10px;
+        margin: 5px 0;
+        border: 1px solid #49c3c7;
+        border-radius: 5px;
+        text-align: center;
+    }
+    input[type="button"] {
+        font-size: 20px; 
+        padding: 12px 24px;
+        color: white;
+        background-color: #006669;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 10px 0;
+    }
+    input[type="button"]:hover {
+        background-color: #49c3c7;
+    }
+    table {
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    td {
+        border: 1px solid #006669;
+        padding: 5px;
+        text-align: center;
+    }
+
+      a {
+    font-size: 24px; 
+    color: #006669;
+    text-decoration: none;
+    border: 2px solid #49c3c7;
+    padding: 12px 24px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+  }
+
+  a:hover {
+    background-color: #49c3c7;
+    color: white;
+  }
+</style>
+<script>
+let str, stb;
+
+
+function fun() {
+  str = parseInt(main_form.t_str.value);
+  stb = parseInt(main_form.t_stb.value);
+  let res_str = "<table>\n";
+
+  for (let i = 1; i <= str; i++) {
+    res_str += "<tr>\n";
+    for (let j = 1; j <= stb; j++) {
+      let val = -5 * j + 3 * i; 
+      res_str += "<td>";
+      res_str += "<input type='text' id='_" + i + "_" + j + "' value='" + val + "'>";
+      res_str += "</td>\n";
+    }
+    res_str += "</tr>\n";
+  }
+  res_str += "</table>";
+  main_div.innerHTML = res_str;
+}
+
+function fun_build() {
+  let sum = 0;
+  for (let i = 1; i <= str; i++) {
+    for (let j = 1; j <= stb; j++) {
+      sum += parseInt(document.getElementById("_" + i + "_" + j).value);
+    }
+  }
+  alert("Сума елементів матриці = " + sum);
+}
+</script>
+</head>
+<body>
+<h3>Матриця Aij = -5j + 3i</h3>
+<form id="main_form">
+  <p>Кількість рядків: <input type="text" id="t_str" value="5"></p>
+  <p>Кількість стовпців: <input type="text" id="t_stb" value="5"></p>
+  <input type="button" onClick="fun();" value="Побудувати матрицю">
+  <input type="button" onClick="fun_build();" value="Розрахувати">
+  <div id="main_div"></div>
+</form>
+
+<a href="lab2_Kyshenia.html">Назад</a>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<style>
+    body {
+        font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+        background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+    h3 {
+        font-size: 32px;
+        color: #006669;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 22px;
+        color: #333;
+    }
+    input[type="button"] {
+        font-size: 18px;
+        padding: 10px 20px;
+        color: white;
+        background-color: #006669;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+    }
+    input[type="button"]:hover {
+        background-color: #49c3c7;
+    }
+
+      a {
+            font-size: 20px; 
+            color: #006669;
+            text-decoration: none;
+            border: 2px solid #49c3c7;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background-color: #49c3c7;
+            color: white;
+        }
+</style>
+</head>
+<body>
+<h3>Дослідження методів console.*</h3>
+<p>Натисни кнопку і перевір результат у <b>Console (F12)</b>.</p>
+
+<input type="button" value="Запустити демонстрацію" onclick="demoConsole()">
+
+<script>
+function demoConsole() {
+    console.clear();
+
+    console.info("Це повідомлення через console.info()");
+    console.warn("Попередження через console.warn()");
+    console.error("Помилка через console.error()");
+
+    let obj = { name: "Іван", age: 22, skills: ["JS", "HTML", "CSS"] };
+    console.dir(obj);     
+    console.dirxml(document.body); 
+
+    console.time("Час виконання циклу");
+    let sum = 0;
+    for (let i = 0; i < 1e6; i++) sum += i;
+    console.timeEnd("Час виконання циклу");
+
+    console.profile("Мій профіль");
+    for (let i = 0; i < 1e5; i++) Math.sqrt(i);
+    console.profileEnd("Мій профіль");
+
+    let x = 5;
+    console.assert(x % 2 === 0, "Помилка: число не парне (x = " + x + ")");
+    console.assert(x > 0, "Умова виконується: число додатне");
+    
+    console.log("Демонстрацію завершено. Дякую за увагу!");
+}
+</script>
+
+  <a href="lab2_Kyshenia.html">Назад</a>
+
+</body>
+</html>

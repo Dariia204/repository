@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<style>
+    body {
+        font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+        background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+    h3 {
+        font-size: 40px;
+        color: #006669;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 22px; 
+        color: #333333;
+        margin-bottom: 15px;
+    }
+    input[type="button"] {
+        font-size: 20px; 
+        padding: 12px 24px;
+        color: white;
+        background-color: #006669;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+    input[type="button"]:hover {
+        background-color: #49c3c7;
+    }
+    .note {
+        margin-top: 30px;
+        font-size: 16px;
+        color: #444;
+        background: #ffffff88;
+        padding: 15px;
+        border-radius: 10px;
+    }
+          a {
+            font-size: 20px; 
+            color: #006669;
+            text-decoration: none;
+            border: 2px solid #49c3c7;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background-color: #49c3c7;
+            color: white;
+        }
+</style>
+</head>
+<body>
+<h3>Дослідження методу console.log()</h3>
+
+<p>Натисни кнопку, а результати дивись у <b>Консолі DevTools</b> (F12 - Console).</p>
+
+<input type="button" value="Запустити приклади" onclick="runExamples()">
+
+<script>
+function runExamples() {
+    console.clear(); 
+
+    let a = 17;
+    let b = 5;
+
+    console.log(" 1. Остача від ділення:");
+    console.log(a + " % " + b + " = " + (a % b));
+
+    console.log("\n 2. Перевірка рівності остачі нулю:");
+    console.log("(" + a + " % " + b + ") === 0 →", (a % b) === 0);
+
+    console.log("\n 3. Використання масиву з керуючими послідовностями:");
+    let arr = [10, 20, 30];
+    console.log("Значення масиву: %d, %d, %d", arr[0], arr[1], arr[2]);
+    console.log("Перший елемент масиву як рядок: %s", arr[0]);
+
+    console.log("\n Приклади завершено. Дякую за увагу 😊");
+}
+</script>
+  <a href="lab2_Kyshenia.html">Назад</a>
+</body>
+</html>
+
+  
+
