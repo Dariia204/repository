@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Ієрархія диктаторів</title>
+  <style>
+    body {
+      font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+      background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; 
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    h2 {
+      font-size: 40px;
+      color: #006669;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    li span {
+      color: #006669;
+      text-decoration: underline;
+    }
+    li ul {
+      display: none;
+      margin-top: 5px;
+    }
+    li ul li {
+      cursor: default;
+      text-decoration: none;
+      color: #333;
+    }
+
+   a {
+      font-size: 20px; 
+      color: #006669;
+      text-decoration: none;
+      border: 2px solid #49c3c7;
+      padding: 12px 24px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    a:hover {
+      background-color: #49c3c7;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Ієрархія диктаторів</h2>
+
+  <ul id="tree"></ul>
+
+  <script src="for_task6_lab3.js"></script>
+  <a href="lab3_Kyshenia.html" target="_blank">Назад</a>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Тест з арифметики</title>
+  <style>
+    body {
+      font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+      background: linear-gradient(to right, #FDF6E3, #4ECDC4);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; 
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    h2 {
+      font-size: 40px;
+      color: #006669;
+      margin-bottom: 20px;
+    }
+    #task {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    input {
+      font-size: 24px;
+      padding: 5px;
+      width: 80px;
+      margin-right: 10px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      background-color: #006669;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #49c3c7;
+    }
+    #result {
+      margin-top: 10px;
+      font-size: 24px;
+      color: #333;
+    }
+    #score {
+      margin-top: 20px;
+      font-size: 26px;
+      color: #006669;
+    }
+      a {
+      font-size: 20px; 
+      color: #006669;
+      text-decoration: none;
+      border: 2px solid #49c3c7;
+      padding: 12px 24px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+    a:hover {
+      background-color: #49c3c7;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Тест з арифметики</h2>
+
+  <div id="score">Загальний рахунок: 0/0</div>
+
+  <div id="task">Завдання буде тут</div>
+
+  <input type="number" id="answer" placeholder="Ваша відповідь">
+  <button id="checkBtn">Перевірити</button>
+  <button id="nextBtn">Наступне завдання</button>
+
+  <div id="result"></div>
+
+  <script src="for_task5_lab3.js"></script>
+  <a href="lab3_Kyshenia.html" target="_blank">Назад</a>
+
+</body>
+</html>
