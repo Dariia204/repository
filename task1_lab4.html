@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Тест по Трансформерам</title>
+<style>
+body {
+  font-family: "Fira Code", "JetBrains Mono", "Consolas", monospace;
+  margin: 0;
+  padding: 40px;
+  background: url("mypictnre.jpeg") no-repeat center center fixed;
+  background-size: cover; 
+  color: #fff;
+}
+
+h2, h3 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+label {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
+select, input[type="text"] {
+  font-size: 25px;
+  padding: 8px;
+}
+
+input[type="button"] {
+  font-size: 25px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #ff9d00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+input[type="button"]:hover {
+  background-color: #e3b262;
+}
+
+#results table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+}
+#results th, #results td {
+  border: 1px solid #ff9d00;
+  padding: 8px;
+  font-size: 22px;
+}
+
+#screamer {
+  display:none; 
+  position:fixed; 
+  top:0; left:0; 
+  width:100%; height:100%; 
+  background:black; 
+  z-index:9999; 
+  text-align:center;
+}
+#screamer img {
+  max-width:100%; 
+  max-height:100%; 
+  margin-top:10%;
+}
+a {
+  font-size: 20px; 
+  color: #000000;
+  text-decoration: none;
+  border: 2px solid #ff9d00;
+  padding: 12px 24px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+a:hover {
+  background-color: #ff9d00;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Тест по Трансформерам</h2>
+<form id="testForm">
+
+<p>1. Яка компанія вперше офіційно представила "Трансформери"?</p>
+<label><input type="radio" name="radio1" value="0"> Warner Bros</label><br>
+<label><input type="radio" name="radio1" value="0"> Marvel</label><br>
+<label><input type="radio" name="radio1" value="0"> Hasbro</label><br>
+<label><input type="radio" name="radio1" value="1"> TakaraTomy</label><br>
+
+<p>2. В якій країні вперше з'явилися "Трансформери"?</p>
+<label><input type="radio" name="radio2" value="0"> Америка</label><br>
+<label><input type="radio" name="radio2" value="0"> Китай</label><br>
+<label><input type="radio" name="radio2" value="1"> Японія</label><br>
+<label><input type="radio" name="radio2" value="0"> Німеччина</label><br>
+
+<p>3. Скільки Праймів було створено спочатку?</p>
+<label><input type="checkbox" name="check1" value="1"> 7</label><br>
+<label><input type="checkbox" name="check1" value="0"> 5</label><br>
+<label><input type="checkbox" name="check1" value="1"> 13</label><br>
+<label><input type="checkbox" name="check1" value="0"> 15</label><br>
+
+<p>4. Ким є власник Матриці Лідерства?</p>
+<label><input type="checkbox" name="check2" value="1"> Родимус</label><br>
+<label><input type="checkbox" name="check2" value="0"> Бамблбі</label><br>
+<label><input type="checkbox" name="check2" value="0"> Смоукскрін</label><br>
+<label><input type="checkbox" name="check2" value="1"> Оптимус</label><br>
+
+<p>5. У яку вантажівку трансформується Оптимус Прайм?</p>
+<select name="select1">
+  <option value="0">Freightliner</option>
+  <option value="1">Peterbilt</option>
+  <option value="0">MAN</option>
+  <option value="0">Western Star</option>
+</select>
+
+<p>6. Які два трансформери з’являються у фільмах серії<br>«Трансформери», але лише на секунди, без значних ролей?</p>
+<select name="select2" multiple size="4">
+  <option value="1">Джаз</option>
+  <option value="0">Міраж</option>
+  <option value="0">Скайварп</option>
+  <option value="1">Кліффджампер</option>
+</select>
+
+<p>7. Введіть назву планети, з якої походять трансформери</p>
+<input type="text" name="text1"><br><br>
+
+<input type="button" value="Завершити тестування" onclick="calculate()">
+</form>
+
+<h3>Результати:</h3>
+<div id="results"></div>
+
+<div id="comment" style="margin-top:10px; font-weight:bold; font-size:30px;"></div>
+
+<div id="screamer">
+  <img src="scaere_photo.jpg" alt="screamer">
+</div>
+
+<audio id="screamSound" src="scream2.mp3"></audio>
+
+
+<script src="task1_lab4.js"></script>
+<br>
+<a href="lab4_Kyshenia.html" target="_blank">Назад</a>
+
+</body>
+</html>
