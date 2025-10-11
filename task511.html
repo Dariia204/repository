@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Вкладки та додаткові функції</title>
+<style>
+
+body {
+    margin: 0;
+    padding: 50px 0;
+    background-color: #048762;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.image-container {
+    width: 460px;
+    margin: 0 auto;
+}
+
+.image-container h4 {
+    margin: 0 0 12px 0;
+    font-size: 26px;
+    color: #ffffff;
+    font-weight: 600;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.image-container h4 small {
+    color: #e3e9ec;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.image-box {
+    width: 460px;
+    height: 640px;
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-size: 460px 640px;
+    background-position: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.tabbed_box {
+    position: absolute;
+    left: 15px;
+    top: 20px; 
+    width: 430px;
+}
+
+.tabbed_area {
+    background-color: #E2E2E2;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+ul.tabs {
+    margin: 10px 0 15px 0;
+    padding: 0;
+}
+
+ul.tabs li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+ul.tabs li a {
+    background-color: #464c54;
+    color: #ffebb5;
+    padding: 11px 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+ul.tabs li a:hover {
+    background-color: #2f343a;
+}
+
+ul.tabs li a.active {
+    background-color: #E2E2E2;
+    color: #282e32;
+    border: 1px solid #464c54;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 25px;
+    border: 1px solid #464c54;
+    border-radius: 10px;
+    margin-top: 0;
+    font-size: 17px;
+    height: 480px;
+    overflow-y: auto;
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+.content ul {
+    margin: 0;
+    padding: 0 8px;
+}
+
+.content ul li {
+    list-style: none;
+    border-bottom: 1px solid #d6dde0;
+    padding: 10px 0;
+}
+
+.content ul li:last-child {
+    border-bottom: none;
+}
+
+.content ul li a {
+    text-decoration: none;
+    color: #3e4346;
+    font-size: 17px;
+}
+
+.content ul li a small {
+    color: #8b959c;
+    font-size: 11px;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
+
+body.light-theme {
+    background-color: #f0f0f0;
+    color: #222;
+}
+
+body.light-theme .tabbed_area {
+    background-color: #ffffff;
+}
+
+body.light-theme .content {
+    background-color: #f9f9f9;
+    color: #222;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+@keyframes slideDown { from {transform: translateY(-30px);} to {transform: translateY(0);} }
+
+.navbar {
+    background-color: #005B41; 
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #005B41;
+        position: absolute;
+        top: 50px; left: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .burger {
+        display: flex;
+    }
+}
+
+button {
+    background-color: #007a5e; 
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #005B41; 
+}
+
+.button-container {
+    margin: 20px auto 40px auto;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <div>My Site</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="burger" onclick="toggleBurger()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<div class="button-container">
+    <button onclick="toggleTheme()">Змінити тему</button>
+    <button onclick="showModal()">Показати повідомлення</button>
+</div>
+
+<div id="myModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal(event)">&times;</span>
+        <h3>Повідомлення</h3>
+        <p>Це модальне вікно. Натисніть хрестик або поза вікном, щоб закрити його. Дякую!</p>
+    </div>
+</div>
+
+<div class="image-container">
+    <h4>Browse Site <small>Select a Tab</small></h4>
+    <div class="image-box">
+        <div id="tabbed_box_1" class="tabbed_box">
+            <div class="tabbed_area">
+                <ul class="tabs">
+                    <li><a href="#" id="tab_1" class="active" onclick="tabSwitch('tab_1','content_1')">Topics</a></li>
+                    <li><a href="#" id="tab_2" onclick="tabSwitch('tab_2','content_2')">Archives</a></li>
+                    <li><a href="#" id="tab_3" onclick="tabSwitch('tab_3','content_3')">Pages</a></li>
+                </ul>
+
+                <div id="content_1" class="content active">
+                    <ul>
+                        <li><a href="">HTML Techniques <small>4 Posts</small></a></li>
+                        <li><a href="">CSS Styling <small>32 Posts</small></a></li>
+                        <li><a href="">Flash Tutorials <small>2 Posts</small></a></li>
+                        <li><a href="">Web Miscellanea <small>19 Posts</small></a></li>
+                        <li><a href="">Site News <small>6 Posts</small></a></li>
+                        <li><a href="">Web Development <small>8 Posts</small></a></li>
+                    </ul>
+                </div>
+
+                <div id="content_2" class="content">
+                    <ul>
+                        <li><a href="">December 2008 <small>6 Posts</small></a></li>
+                        <li><a href="">November 2008 <small>4 Posts</small></a></li>
+                        <li><a href="">October 2008 <small>22 Posts</small></a></li>
+                        <li><a href="">September 2008 <small>12 Posts</small></a></li>
+                        <li><a href="">August 2008 <small>3 Posts</small></a></li>
+                        <li><a href="">July 2008 <small>1 Post</small></a></li>
+                    </ul>
+                </div>
+
+                <div id="content_3" class="content">
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contribute</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="task511.js"></script>
+
+</body>
+</html>
