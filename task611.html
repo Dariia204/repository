@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Розбір Email та форма</title>
+<style>
+  input { display: block; margin: 5px 0; padding: 5px; width: 300px; }
+  .valid { border: 2px solid green; }
+  .invalid { border: 2px solid red; color: red; }
+  .msg { font-size: 12px; display: inline-block; margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Форма користувача</h2>
+
+<form id="userForm">
+  <label>Email:</label>
+  <input type="text" id="email"><span class="msg" id="emailMsg"></span>
+
+  <label>Ім’я та прізвище:</label>
+  <input type="text" id="fullname"><span class="msg" id="fullnameMsg"></span>
+
+  <label>Логін:</label>
+  <input type="text" id="login"><span class="msg" id="loginMsg"></span>
+
+  <label>Пароль:</label>
+  <input type="password" id="password"><span class="msg" id="passwordMsg"></span>
+
+  <label>Поштовий індекс:</label>
+  <input type="text" id="postcode"><span class="msg" id="postcodeMsg"></span>
+
+  <button type="button" onclick="validateForm()">Перевірити</button>
+</form>
+
+<hr>
+<h2>Розбір Email</h2>
+
+<script>
+let s = "dasha2007makarenro@gmail.com";
+let t = "daria.kyshenia.24@pnu.edu.ua";
+
+let r = /^([a-z0-9]+(\.[a-z0-9]+)*)@([a-z0-9]+(\.[a-z0-9]+)*)$/i;
+let a = s.match(r);
+let b = t.match(r);
+
+document.writeln("<h3>Перевірка першого email:</h3>");
+if (a) {
+    document.writeln("Весь email: " + a[0] + "<br>");
+    document.writeln("Локальна частина: " + a[1] + "<br>");
+    document.writeln("Додаткова частина локальної (якщо є): " + a[2] + "<br>");
+    document.writeln("Домен: " + a[3] + "<br>");
+    document.writeln("Частина домену після крапки: " + a[4] + "<br><br>");
+} else {
+    document.writeln("Email не підходить під шаблон!<br><br>");
+}
+
+document.writeln("<h3>Перевірка другого email:</h3>");
+if (b) {
+    document.writeln("Весь email: " + b[0] + "<br>");
+    document.writeln("Локальна частина: " + b[1] + "<br>");
+    document.writeln("Додаткова частина локальної (якщо є): " + b[2] + "<br>");
+    document.writeln("Домен: " + b[3] + "<br>");
+    document.writeln("Частина домену після крапки: " + b[4]);
+} else {
+    document.writeln("Email не підходить під шаблон!");
+}
+
+function validateForm() {
+  let email = document.getElementById("email"), emailMsg = document.getElementById("emailMsg");
+  if(email.value.includes("@") && email.value.endsWith("pnu.edu.ua")){email.className="valid"; emailMsg.textContent="✔";}
+  else{email.className="invalid"; emailMsg.textContent="Email має містити @ та закінчуватись на pnu.edu.ua";}
+
+  let fullname = document.getElementById("fullname"), fullnameMsg = document.getElementById("fullnameMsg");
+  let parts = fullname.value.split(" ");
+  if(parts.length===2){let f=parts[0],l=parts[1];
+    if(f[0]===f[0].toUpperCase() && f.slice(1)===f.slice(1).toLowerCase() && l===l.toUpperCase()){fullname.className="valid"; fullnameMsg.textContent="✔";}
+    else{fullname.className="invalid"; fullnameMsg.textContent="Перше слово з великої, друге всі великі";}}
+  else{fullname.className="invalid"; fullnameMsg.textContent="Введіть ім’я та прізвище через пробіл";}
+
+  let login=document.getElementById("login"), loginMsg=document.getElementById("loginMsg");
+  if(/^[a-zA-Z]+$/.test(login.value)){login.className="valid"; loginMsg.textContent="✔";}
+  else{login.className="invalid"; loginMsg.textContent="Логін тільки латиниця";}
+
+  let password=document.getElementById("password"), passwordMsg=document.getElementById("passwordMsg"), pass=password.value;
+  let hasLetter=/[a-zA-Z]/.test(pass), hasNumber=/\d/.test(pass), hasSpecial=/[_\-!@#$%^&*]/.test(pass);
+  if(pass.length>=8 && hasLetter && hasNumber && hasSpecial){password.className="valid"; passwordMsg.textContent="✔";}
+  else{password.className="invalid"; passwordMsg.textContent="Мінімум 8 символів, буква, цифра, спецсимвол";}
+
+  let postcode=document.getElementById("postcode"), postcodeMsg=document.getElementById("postcodeMsg");
+  if(/^\d{5}$/.test(postcode.value)){postcode.className="valid"; postcodeMsg.textContent="✔";}
+  else{postcode.className="invalid"; postcodeMsg.textContent="Поштовий індекс: 5 цифр";}
+}
+</script>
+
+</body>
+</html>
