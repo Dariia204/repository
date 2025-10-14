@@ -75,36 +75,46 @@
 <script>
 let str, stb;
 
-
 function fun() {
-  str = parseInt(main_form.t_str.value);
-  stb = parseInt(main_form.t_stb.value);
-  let res_str = "<table>\n";
+    str = parseInt(main_form.t_str.value);
+    stb = parseInt(main_form.t_stb.value);
 
-  for (let i = 1; i <= str; i++) {
-    res_str += "<tr>\n";
-    for (let j = 1; j <= stb; j++) {
-      let val = -5 * j + 3 * i; 
-      res_str += "<td>";
-      res_str += "<input type='text' id='_" + i + "_" + j + "' value='" + val + "'>";
-      res_str += "</td>\n";
+    const table = document.createElement("table");
+
+    for (let i = 1; i <= str; i++) {
+        const tr = document.createElement("tr");
+        for (let j = 1; j <= stb; j++) {
+            const td = document.createElement("td");
+            const input = document.createElement("input");
+            input.type = "text";
+            input.id = `_${i}_${j}`;
+            input.value = -5 * j + 3 * i;
+            input.style.textAlign = "center";
+            td.appendChild(input);
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
     }
-    res_str += "</tr>\n";
-  }
-  res_str += "</table>";
-  main_div.innerHTML = res_str;
+
+    main_div.innerHTML = "";
+    main_div.appendChild(table);
 }
 
 function fun_build() {
-  let sum = 0;
-  for (let i = 1; i <= str; i++) {
-    for (let j = 1; j <= stb; j++) {
-      sum += parseInt(document.getElementById("_" + i + "_" + j).value);
+    if (str < 2) {
+        alert("Другої рядка не існує!");
+        return;
     }
-  }
-  alert("Сума елементів матриці = " + sum);
+
+    let sum = 0;
+    for (let j = 1; j <= stb; j++) {
+        sum += parseInt(document.getElementById(`_2_${j}`).value) || 0;
+    }
+
+    alert("Сума елементів другого рядка = " + sum);
 }
 </script>
+
 </head>
 <body>
 <h3>Матриця Aij = -5j + 3i</h3>
