@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна JS — Робота з рядками</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.2s ease-in-out;
+    }
+
+    select:focus, input[type="text"]:focus {
+      box-shadow: 0 0 8px rgba(255,255,255,0.8);
+      transform: scale(1.02);
+    }
+
+    button {
+      width: 100%;
+      background: #00c9a7;
+      border: none;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: #02b396;
+      transform: translateY(-2px);
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 18px;
+      background: rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Лабораторна робота: Рядки в JavaScript</h2>
+
+  <div class="card">
+    <label>Вибери завдання:</label>
+    <select id="taskSelect">
+      <option value="1">1–7. Рядкові операції</option>
+      <option value="8">8. Заміна підрядка</option>
+      <option value="9">9. Перевірка паліндрому</option>
+      <option value="10">10. Кількість голосних</option>
+    </select>
+
+    <input type="text" id="textInput" placeholder="Введи рядок">
+    <button onclick="runTask()">Виконати</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script src="task1_7.js"></script>
+  <script src="task8.js"></script>
+  <script src="task9.js"></script>
+  <script src="task10.js"></script>
+
+  <script>
+    function runTask() {
+      let str = document.getElementById("textInput").value;
+      let task = document.getElementById("taskSelect").value;
+      let res = "";
+
+      if (task === "1") res = runTask1to7(str);
+      else if (task === "8") res = task8(str);
+      else if (task === "9") res = task9(str);
+      else if (task === "10") res = task10(str);
+      else res = "Немає такого завдання.";
+
+      document.getElementById("result").innerText = res;
+    }
+  </script>
+</body>
+</html>
