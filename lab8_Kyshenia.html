@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторна №8</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      color: #222;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #234;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4e79a7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 15px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #355d84;
+    }
+
+    input {
+      padding: 5px 8px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      margin-right: 5px;
+    }
+
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #eef3fb;
+      border-radius: 8px;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Лабораторна робота №8</h1>
+
+  <section>
+    <h2>Завдання 1. Робота з часом</h2>
+    <label>Введіть кількість секунд для додавання:</label>
+    <input type="number" id="sekundyInput">
+    <button onclick="pokazatyChas()">Показати поточний час</button>
+    <button onclick="zminytyChas()">Змінити час</button>
+    <button onclick="ochystyty('result1')">Очистити</button>
+    <div id="result1" class="result"></div>
+  </section>
+
+  <section>
+    <h2>Завдання 2. Дата і час</h2>
+    <h3>2.1. Поточна дата, день тижня і час</h3>
+    <button onclick="pokazatyPotocnuDatu()">Виконати</button>
+    <button onclick="ochystyty('result2_1')">Очистити</button>
+    <div id="result2_1" class="result"></div>
+
+    <h3>2.2. Останній день місяця</h3>
+    <label>Рік: </label><input type="number" id="rikInput">
+    <label>Місяць (1-12): </label><input type="number" id="misInput">
+    <button onclick="znajtyOstanniyDen()">Виконати</button>
+    <button onclick="ochystyty('result2_2')">Очистити</button>
+    <div id="result2_2" class="result"></div>
+
+    <h3>2.3. Секунди від початку дня</h3>
+    <button onclick="pokazatySekundy()">Виконати</button>
+    <button onclick="ochystyty('result2_3')">Очистити</button>
+    <div id="result2_3" class="result"></div>
+  </section>
+
+  <section>
+    <h2>Завдання 3. Клас Car</h2>
+    <label>Марка:</label><input id="brandInput">
+    <label>Модель:</label><input id="modelInput">
+    <label>Рік:</label><input type="number" id="yearInput">
+    <button onclick="pokazatyMashynu()">Показати інформацію</button>
+    <button onclick="ochystyty('result3')">Очистити</button>
+    <div id="result3" class="result"></div>
+  </section>
+
+  <section>
+    <h2>Завдання 4. Клас ElectricCar</h2>
+    <label>Марка:</label><input id="eBrandInput">
+    <label>Модель:</label><input id="eModelInput">
+    <label>Рік:</label><input type="number" id="eYearInput">
+    <label>Батарея (kWh):</label><input type="number" id="batteryInput">
+    <button onclick="pokazatyElektro()">Показати інформацію</button>
+    <button onclick="ochystyty('result4')">Очистити</button>
+    <div id="result4" class="result"></div>
+  </section>
+
+  <section>
+    <h2>Завдання 5. Статичний метод MathHelper</h2>
+    <label>Число 1:</label><input type="number" id="ch1">
+    <label>Число 2:</label><input type="number" id="ch2">
+    <button onclick="dodatyChysla()">Виконати</button>
+    <button onclick="ochystyty('result5')">Очистити</button>
+    <div id="result5" class="result"></div>
+  </section>
+
+  <section>
+    <h2>Завдання 6. Клас Product і DiscountProduct</h2>
+    <label>Назва:</label><input id="nazvaInput">
+    <label>Ціна:</label><input type="number" id="cenaInput">
+    <label>Кількість:</label><input type="number" id="kilkistInput">
+    <label>Знижка (%):</label><input type="number" id="znyzhkaInput">
+    <button onclick="pokazatyProdukt()">Показати інформацію</button>
+    <button onclick="ochystyty('result6')">Очистити</button>
+    <div id="result6" class="result"></div>
+  </section>
+
+  <script src="lab8_all.js"></script>
+</body>
+</html>
