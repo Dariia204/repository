@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<title>Animated IPZ Logo</title>
+<title>Neon IPZ Logo</title>
 <style>
 body {
   margin: 0;
@@ -21,18 +21,28 @@ body {
   gap: 10px;
   text-align: center;
   font-size: clamp(40px, 8vw, 120px);
-  text-shadow: 0 0 5px #99c2e6, 0 0 10px #cce7ff;
 }
 
 .letter {
   opacity: 0.1;
   transition: opacity 0.5s, font-family 0.25s;
+  color: #fff;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
 }
 
 .binaryDigit {
   position: absolute;
   font-size: 30px;
-  color: #6ab4e6;
+  color: #0ff;
+  text-shadow:
+    0 0 3px #0ff,
+    0 0 6px #0ff,
+    0 0 10px #0ff,
+    0 0 20px #0ff;
 }
 </style>
 </head>
@@ -45,11 +55,11 @@ body {
 </div>
 
 <script>
-// --- Settings ---
+// Letters
 const letters = document.querySelectorAll(".letter");
 let isRunning = true;
 
-// --- Binary digits 0/1 ---
+// Binary digits 0/1
 const numBinary = 50;
 const digits = [];
 for (let i = 0; i < numBinary; i++) {
@@ -67,7 +77,7 @@ for (let i = 0; i < numBinary; i++) {
 
 let rotation = 0;
 
-// --- Lamp effect for IPZ letters ---
+// Lamp effect for IPZ
 function lampEffect(done) {
   letters.forEach(l => l.style.opacity = 0.1);
   let i = 0;
@@ -91,8 +101,6 @@ function lampEffect(done) {
 
   next();
 }
-
-// --- Font change after lamp effect ---
 const fontList = ["monospace","sans-serif","serif","fantasy","cursive","Courier New","Impact","Verdana"];
 let fontIdx = 0;
 function animateFont(){
@@ -100,10 +108,8 @@ function animateFont(){
     letters.forEach(l => l.style.fontFamily = fontList[fontIdx]);
     fontIdx = (fontIdx + 1) % fontList.length;
   }
-  setTimeout(animateFont, 150); // speed
+  setTimeout(animateFont, 150); 
 }
-
-// --- Animate binary digits ---
 function animateBinary() {
   if(isRunning){
     rotation += 0.8;
@@ -120,13 +126,10 @@ function animateBinary() {
   }
   requestAnimationFrame(animateBinary);
 }
-
-// --- Click to start/stop ---
 document.addEventListener("click", () => {
   isRunning = !isRunning;
 });
 
-// --- Start ---
 lampEffect(() => animateFont());
 animateBinary();
 </script>
