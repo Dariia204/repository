@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Animated IPZ Logo</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #0a2e5c;
+  font-family: monospace;
+  color: white;
+}
+
+#ipzBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  font-size: clamp(40px, 8vw, 120px);
+  text-shadow: 0 0 5px #99c2e6, 0 0 10px #cce7ff;
+}
+
+.letter {
+  opacity: 0.1;
+  transition: opacity 0.5s, font-family 0.25s;
+}
+
+.binaryDigit {
+  position: absolute;
+  font-size: 30px;
+  color: #6ab4e6;
+}
+</style>
+</head>
+<body>
+
+<div id="ipzBox">
+  <span class="letter">І</span>
+  <span class="letter">П</span>
+  <span class="letter">З</span>
+</div>
+
+<script>
+// --- Settings ---
+const letters = document.querySelectorAll(".letter");
+let isRunning = true;
+
+// --- Binary digits 0/1 ---
+const numBinary = 50;
+const digits = [];
+for (let i = 0; i < numBinary; i++) {
+  const el = document.createElement("span");
+  el.className = "binaryDigit";
+  el.textContent = Math.random() < 0.5 ? '0' : '1';
+  document.body.appendChild(el);
+  digits.push({
+    el,
+    angle: i * (2 * Math.PI / numBinary),
+    radius: 180 + Math.random()*60,
+    speed: 0.008 + Math.random()*0.01
+  });
+}
+
+let rotation = 0;
+
+// --- Lamp effect for IPZ letters ---
+function lampEffect(done) {
+  letters.forEach(l => l.style.opacity = 0.1);
+  let i = 0;
+
+  function next() {
+    if(i < letters.length){
+      let flickerCount = 0;
+      const letter = letters[i];
+      const flicker = setInterval(() => {
+        letter.style.opacity = letter.style.opacity === "1" ? "0.2" : "1";
+        flickerCount++;
+        if(flickerCount > 5){
+          clearInterval(flicker);
+          letter.style.opacity = "1";
+          i++;
+          setTimeout(next, 150);
+        }
+      }, 100);
+    } else if(done) done();
+  }
+
+  next();
+}
+
+// --- Font change after lamp effect ---
+const fontList = ["monospace","sans-serif","serif","fantasy","cursive","Courier New","Impact","Verdana"];
+let fontIdx = 0;
+function animateFont(){
+  if(isRunning){
+    letters.forEach(l => l.style.fontFamily = fontList[fontIdx]);
+    fontIdx = (fontIdx + 1) % fontList.length;
+  }
+  setTimeout(animateFont, 150); // speed
+}
+
+// --- Animate binary digits ---
+function animateBinary() {
+  if(isRunning){
+    rotation += 0.8;
+    const cx = window.innerWidth/2;
+    const cy = window.innerHeight/2;
+
+    digits.forEach(d => {
+      d.angle += d.speed;
+      const scale = 0.6 + 0.4 * Math.sin(d.angle * 4);
+      d.el.style.left = cx + Math.cos(d.angle) * d.radius + "px";
+      d.el.style.top = cy + Math.sin(d.angle) * d.radius + "px";
+      d.el.style.fontSize = 30 * scale + "px";
+    });
+  }
+  requestAnimationFrame(animateBinary);
+}
+
+// --- Click to start/stop ---
+document.addEventListener("click", () => {
+  isRunning = !isRunning;
+});
+
+// --- Start ---
+lampEffect(() => animateFont());
+animateBinary();
+</script>
+
+</body>
+</html>
