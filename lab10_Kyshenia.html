@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>jQuery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0c2444;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .button, #showImage, button {
+            padding: 10px 16px;
+            background: #1d76d3;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .button:hover,
+        #showImage:hover,
+        button:hover {
+            background: #155ba3;
+        }
+
+        #hide_text {
+            margin-top: 10px;
+            padding: 10px;
+            background: #0f355f;
+            border-radius: 6px;
+        }
+
+        .hoverable {
+            margin-top: 12px;
+            padding: 10px;
+            background: #08233f;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .hoverable.hovered {
+            background: #114c85;
+        }
+
+        .special {
+            padding: 12px;
+            background: #0f355f;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .special.clicked {
+            background: #155ba3;
+        }
+
+        #myImage {
+            display: none;
+            width: 420px;
+            margin-top: 12px;
+            border-radius: 8px;
+        }
+
+        .msg {
+            margin-left: 8px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 16px;
+            background: #444;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        $(function() {
+            alert("jQuery завантажено успішно!");
+
+            const $text = $("#hide_text");
+            $text.hide();
+
+            $(".button").on("click", function(e) {
+                e.preventDefault();
+                $text.slideDown(200);
+            });
+
+            $("p:first").text("DOM first!");
+            $("p:last").text("DOM last!");
+
+            $(".hoverable").hover(
+                function() { $(this).addClass("hovered"); },
+                function() { $(this).removeClass("hovered"); }
+            );
+
+            $(".special")
+                .on("click", function() {
+                    $(this).addClass("clicked");
+                })
+                .on("dblclick", function() {
+                    $(this).removeClass("clicked");
+                });
+
+            $("#btn1").on("click", () => alert("Одинарний клік"));
+            $("#btn2").on("dblclick", () => alert("Подвійний клік"));
+
+            $("#showImage").on("click", function(e) {
+                e.preventDefault();
+                $("#myImage").fadeIn(200);
+            });
+
+            $("#myImage")
+                .on("mouseover", function() {
+                    $(this).attr("title", "Підпис до зображення");
+                })
+                .on("click", function() {
+                    $(this).fadeOut(180);
+                });
+
+            $("form").on("submit", function(e) {
+                e.preventDefault();
+
+                const value = $("input[type='text']").first().val().trim();
+
+                if (value === "correct") {
+                    $(".msg").text("Успішно!").css("color", "#9be7c4").show();
+                } else {
+                    $(".msg")
+                        .text("Неправильно!")
+                        .css("color", "#ff6e6e")
+                        .show()
+                        .fadeOut(1000);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>jQuery</h1>
+
+        <div>
+            <a href="#" class="button">Натисніть, щоб показати текст</a>
+            <div id="hide_text">Демонстраційний прихований текст</div>
+        </div>
+
+        <div style="margin-top:20px">
+            <p>Перший абзац</p>
+            <p>Середній абзац</p>
+            <p>Останній абзац</p>
+
+            <div class="hoverable">Наведи на мене мишкою</div>
+        </div>
+
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:20px 0">
+
+        <div class="special">Клік або подвійний клік на мене</div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <button id="btn1">Одинарний клік</button>
+            <button id="btn2">Подвійний клік</button>
+            <a href="#" id="showImage">Показати зображення</a>
+        </div>
+
+        <img id="myImage" src="my_pic.jpg" alt="Зображення">
+
+        <div style="margin-top:16px">
+            <p>Введіть в текстове поле слово 'correct'.</p>
+            <form>
+                <input type="text" placeholder="Введіть слово..." />
+                <input type="submit" value="Перевірити" />
+                <span class="msg" style="display:none"></span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
