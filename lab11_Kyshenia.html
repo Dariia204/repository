@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>jQuery Lab 11</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<style>
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Контейнер для секцій */
+h2 {
+    margin-top: 30px;
+    color: #2b4c7e;
+    border-left: 4px solid #2b4c7e;
+    padding-left: 10px;
+}
+
+/* Кнопки */
+button {
+    padding: 8px 14px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background: #2b4c7e;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #1e365b;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0px);
+}
+
+/* Блоки */
+#z1-block, #z2-block, #parseHTML-res, #trim-res, #type-res {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+    margin-top: 10px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    padding: 5px 0;
+}
+
+/* Маленькі поп-ефекти */
+.modify {
+    background: #ffebc2 !important;
+    transition: 0.3s;
+}
+
+/* Трохи плавності для всього */
+* {
+    transition: 0.2s;
+}
+</style>
+
+<h2>Завдання 1</h2>
+
+<div id="z1-block">Початковий текст</div>
+<input id="z1-input" value="Hello">
+<button id="html-btn">.html()</button>
+<button id="css-btn">.css()</button>
+<button id="val-btn">.val()</button>
+<button id="attr-get-btn">attr(name)</button>
+<button id="attr-set-btn">attr(name, value)</button>
+<button id="attr-obj-btn">attr(obj)</button>
+<button id="attr-fn-btn">attr(name, function)</button>
+<button id="remove-attr-btn">removeAttr()</button>
+
+<hr>
+
+<h2>Завдання 2</h2>
+
+<div id="z2-block" style="width:150px; height:50px; background:lightblue; margin-bottom:10px;">
+Блок Z2
+</div>
+
+<button id="after-btn">.after()</button>
+<button id="remove-btn">.remove()</button>
+<button id="innerH-btn">innerHeight(func)</button>
+<button id="outerH-btn">outerHeight()</button>
+
+<hr>
+
+<h2>Завдання 3</h2>
+
+<ul id="list">
+    <li class="a">Елемент 1</li>
+    <li class="b">Елемент 2</li>
+    <li class="a">Елемент 3</li>
+    <li class="b">Елемент 4</li>
+    <li class="a">Елемент 5</li>
+</ul>
+
+<button id="end-btn">.end()</button>
+<button id="nextAll-btn">.nextAll()</button>
+<button id="prevUntil-btn">.prevUntil()</button>
+<button id="eq-btn">.eq()</button>
+<button id="prev-btn">.prev()</button>
+
+<button id="filter-class-btn">filter(class)</button>
+<button id="filter-third-btn">filter(li:nth-child(3n))</button>
+
+<hr>
+
+<h2>Завдання 5</h2>
+
+<div id="parseHTML-res"></div>
+<div id="trim-res"></div>
+<div id="type-res"></div>
+
+<button id="parseHTML-btn">$.parseHTML()</button>
+<button id="removeData-btn">$.removeData()</button>
+<button id="trim-btn">$.trim()</button>
+<button id="type-btn">$.type()</button>
+
+
+<script>
+$("#html-btn").click(() => {
+    $("#z1-block").html("<b>Новий HTML</b>");
+});
+
+$("#css-btn").click(() => {
+    $("#z1-block").css({
+        color: "red",
+        fontSize: "20px"
+    });
+});
+
+$("#val-btn").click(() => {
+    alert("VAL: " + $("#z1-input").val());
+});
+
+$("#attr-get-btn").click(() => {
+    alert($("#z1-input").attr("value"));
+});
+
+$("#attr-set-btn").click(() => {
+    $("#z1-input").attr("value", "NewVal");
+});
+
+$("#attr-obj-btn").click(() => {
+    $("#z1-block").attr({
+        "data-id": "123",
+        "data-user": "Test"
+    });
+    console.log("ATTR OBJ:", $("#z1-block").attr());
+    alert("Додано data-id та data-user");
+});
+
+$("#attr-fn-btn").click(() => {
+    $("#z1-block").attr("data-clicks", function(i, old) {
+        return (parseInt(old) || 0) + 1;
+    });
+    alert("data-clicks = " + $("#z1-block").attr("data-clicks"));
+});
+
+$("#remove-attr-btn").click(() => {
+    $("#z1-block").removeAttr("data-id data-user data-clicks");
+    alert("Усі data-* атрибути видалено");
+});
+
+
+$("#after-btn").click(() => {
+    $("#z2-block").after("<p>Додано через .after()</p>");
+});
+
+$("#remove-btn").click(() => {
+    $("#z2-block").remove();
+});
+
+$("#innerH-btn").click(() => {
+    $("#z2-block").innerHeight(function(){
+        return 100;
+    });
+});
+
+$("#outerH-btn").click(() => {
+    alert("outerHeight: " + $("#z2-block").outerHeight());
+});
+
+$("#end-btn").click(() => {
+    $("#list li").eq(1).next().css("color", "blue").end().css("color", "green");
+});
+
+$("#nextAll-btn").click(() => {
+    $("#list li:first").nextAll().css("background", "yellow");
+});
+
+$("#prevUntil-btn").click(() => {
+    $("#list li:nth-child(5)").prevUntil(".b").css("border", "1px solid red");
+});
+
+$("#eq-btn").click(() => {
+    $("#list li").eq(2).css("font-weight", "bold");
+});
+
+$("#prev-btn").click(() => {
+    $("#list li:nth-child(4)").prev().css("text-decoration", "underline");
+});
+
+$("#filter-class-btn").click(() => {
+    $("#list li").filter(".a").css("color", "purple").append(" modify");
+});
+
+$("#filter-third-btn").click(() => {
+    $("#list li").filter(":nth-child(3n)").css("background", "pink").append(" modify");
+});
+
+$("#parseHTML-btn").click(() => {
+    let el = $.parseHTML("<p>Привіт з parseHTML()</p>");
+    $("#parseHTML-res").html(el);
+});
+
+$("#removeData-btn").click(() => {
+    let box = $("#parseHTML-res");
+    box.data("a", 123);
+    $.removeData(box[0], "a");
+    alert("Data after remove: " + box.data("a"));
+});
+
+$("#trim-btn").click(() => {
+    let text = "   hello world   ";
+    $("#trim-res").text("Результат: [" + $.trim(text) + "]");
+});
+
+$("#type-btn").click(() => {
+    let results = [
+        $.type(123),
+        $.type("text"),
+        $.type([]),
+        $.type({}),
+        $.type(null),
+        $.type(undefined),
+    ];
+    $("#type-res").text(results.join(", "));
+});
+</script>
+
+</body>
+</html>
