@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна №12 — jQuery Анімації</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #0c2444;
+            padding: 20px;
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        button {
+            padding: 10px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            background: #1d76d3;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #155ba3;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: #5da2d5;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.3);
+        }
+
+        /* ЛОГОТИП 121 без квадрата */
+        #logo121 {
+            font-size: 72px;
+            color: #22c55e;
+            margin-top: 30px;
+            text-shadow: 0 0 10px #000;
+            position: relative;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Лабораторна робота 12 — jQuery ефекти</h2>
+
+<button id="toggleBtn">toggle()</button>
+<button id="fadeInBtn">fadeIn()</button>
+<button id="fadeOutBtn">fadeOut()</button>
+<button id="fadeToBtn">fadeTo()</button>
+<button id="delayBtn">delay() + комбо</button>
+<button id="queueBtn">queue() + dequeue()</button>
+<button id="clearBtn">clearQueue()</button>
+
+<!-- Кнопка для анімації логотипа -->
+<button id="animateLogoBtn">Анімація логотипу 121</button>
+
+<div id="box"></div>
+
+<!-- Логотип -->
+<div id="logo121">121</div>
+
+<script>
+$(function() {
+
+    // --- Всі стандартні функції для #box ---
+    $("#toggleBtn").on("click", () => {
+        $("#box").toggle(400);
+    });
+
+    $("#fadeInBtn").on("click", () => {
+        $("#box").fadeIn(500);
+    });
+
+    $("#fadeOutBtn").on("click", () => {
+        $("#box").fadeOut(500);
+    });
+
+    $("#fadeToBtn").on("click", () => {
+        $("#box").fadeTo(500, 0.3);
+    });
+
+    $("#delayBtn").on("click", () => {
+        $("#box")
+            .fadeOut(300)
+            .delay(600)
+            .fadeIn(300);
+    });
+
+    $("#queueBtn").on("click", () => {
+        $("#box")
+            .queue(function(next) {
+                $(this).css("background", "#ffb347");
+                setTimeout(next, 500);
+            })
+            .queue(function(next) {
+                $(this).css("width", "260px");
+                setTimeout(next, 500);
+            })
+            .queue(function(next) {
+                $(this).css("height", "260px");
+                setTimeout(next, 500);
+            })
+            .dequeue();
+    });
+
+    $("#clearBtn").on("click", () => {
+        $("#box").clearQueue();
+        $("#box").stop(true, true);
+    });
+
+    // --- Анімація логотипа 121 ---
+    $("#animateLogoBtn").on("click", () => {
+        $("#logo121").animate(
+            {
+                fontSize: "120px",
+                opacity: 0.5,
+                marginTop: "100px"
+            },
+            {
+                duration: 800,
+                easing: "swing",
+                complete: function() {
+                    $(this).animate(
+                        {
+                            fontSize: "72px",
+                            opacity: 1,
+                            marginTop: "30px"
+                        },
+                        800
+                    );
+                }
+            }
+        );
+    });
+
+});
+</script>
+
+</body>
+</html>
